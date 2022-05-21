@@ -1,4 +1,4 @@
-<img src="../image/home_credict.png" width="100px" height="50px" title="table description"/>
+<img src="image/home_credict.png" width="100px" height="50px" title="table description"/>
 
 application_train/ application_test: 대출 신청서에 대한 정보, 모든 대출은 각각 행을 갖고 있고, SK_ID_CURR이라는 피쳐로 구별됨. Training데이터에는 target이라는 변수가 있는데, 0은 대출을 갚았고, 1은 대출을 안갚은 것이다.
 
