@@ -77,3 +77,60 @@ installments_payments: 이전 대출에 대한 지불 히스토리
 122. AMT_REQ_CREDIT_BUREAU_MON: 신청 전 한 달동안 고객에 대한 CB로의 문의 횟수
 123. AMT_REQ_CREDIT_BUREAU_QRT: 신청 전 세달 동안 고객에 대한 CB로의 문의 횟수
 124. AMT_REQ_CREDIT_BUREAU_YEAR: 신청 전 일년동안 고객에 대한 CB로의 문의 횟수
+
+#### Feature Engineering to Application data
+
+##### Data Cleaning
+
+CODE_GENDER != ‘XNA’
+
+AMT_INCOME_TOTAL < 2000000
+
+DAYS_EMPLOYED == 365243 -> np.nan
+
+DAYS_LAST_PHONE_CHANGE==0 -> np.nan
+
+
+##### FLAG_DOC 데이터 AGG
+
+DOCUMENT_COUNT = df[docs].sum(axis=1)
+
+NEW_DOC_KURT = df[docs].kurtosis(axis=1)
+
+##### Categorical age - based on target=1 plot
+
+AGE_RANGE =  DAYS_BIRTH.apply(lambda x: get_age_label(x)
+
+EXT_SOURCES_PROD = EXT_SOURCE_1 * EXT_SOURCE_2 * EXT_SOURCE_3
+
+EXT_SOURCES_WEIGHT = EXT_SOURCE_1 *2 + EXT_SOURCE_2*1 + EXT_SOURCE_3*3
+
+['EXT_SOURCE_1', 'EXT_SOURCE_2', 'EXT_SOURCE_3'] -> min, max, mean, nanmedian, var
+
+##### Credit ratios
+
+CREDIT_TO_ANNUITY_RATIO = AMT_CREDIT / AMT_ANNUITY  (대출 총액 / 매달 내야하는 금액)
+
+CREDIT_TO_GOODS_RATIO = AMT_CREDIT / AMT_GOODS_PRICE (대출 총액 / 대출 받아서 사려고한 총 금액)
+
+##### Income ratio
+
+ANNUITY_TO_INCOME_RATIO = AMT_ANNUITY / AMT_INCOME_TOTAL ( 매달 내야하는 금액 / 수입)
+
+CREDIT_TO_INCOME_RATIO = AMT_CREDIT / AMT_INCOME_TOTAL (대출 총액 / 수입)
+
+INCOME_TO_EMPLOYED_RATIO = AMT_INCOME_TOTAL / DAYS_EMPLOYED (수입 / 현재까지 직장에서 일한 수)
+
+INCOME_TO_BIRTH_RATIO = AMT_INCOME_TOTAL / DAYS_BIRTH (수입 / 태어날 날)
+
+##### Time ratio
+
+EMPLOYED_TO_BIRTH_RATIO = DAYS_EMPLOYED / DAYS_BIRTH(일한 날 / 태어난 날)
+
+ID_TO_BIRTH_RATIO = DAYS_ID_PUBLISH / DAYS_BIRTH (대출 기간 내에 신분증 변경한 일수 / 태어난 날)
+
+CAR_TO_BIRTH_RATIO = OWN_CAR_AGE / DAYS_BIRTH (자동차 연식 / 태어난 날)
+
+CAR_TO_EMPLOYED_RATIO = OWN_CAR_AGE / DAYS_EMPLOYED (자동차 연식 / 태어난 날)
+
+PHONE_TO_BIRTH_RATIO = DAYS_LAST_PHONE_CHANGE / DAYS_BIRTH (몇일전에 휴대폰을 변경했는지 / 태어난 날)
