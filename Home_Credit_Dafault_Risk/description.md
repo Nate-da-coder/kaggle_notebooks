@@ -134,3 +134,6 @@ CAR_TO_BIRTH_RATIO = OWN_CAR_AGE / DAYS_BIRTH (자동차 연식 / 태어난 날)
 CAR_TO_EMPLOYED_RATIO = OWN_CAR_AGE / DAYS_EMPLOYED (자동차 연식 / 태어난 날)
 
 PHONE_TO_BIRTH_RATIO = DAYS_LAST_PHONE_CHANGE / DAYS_BIRTH (몇일전에 휴대폰을 변경했는지 / 태어난 날)
+
+##### Groupby: Statistics for applications in the same group
+group = ['ORGANIZATION_TYPE', 'NAME_EDUCATION_TYPE', 'OCCUPATION_TYPE', 'AGE_RANGE', 'CODE_GENDER']
